@@ -8,7 +8,12 @@ function App() {
   useEffect(() => {
     fetch('http://localhost:6001/plants')
     .then(resp => resp.json())
-    .then(plantArrayInDb => { setPlants(plantArrayInDb);
+    .then(plantArrayInDb => { 
+      const plantsHaveStock = plantArrayInDb.map(plant => ({
+        ...plant,
+        isInStock: plant.isInStock !== undefined ? plant.isInStock: true
+      }))
+      setPlants(plantArrayInDb);
     })
   }, []);
 

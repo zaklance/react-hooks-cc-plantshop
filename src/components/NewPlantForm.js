@@ -6,7 +6,8 @@ function NewPlantForm({ plants, setPlants}) {
     id: '',
     name: '',
     image: '',
-    price: ''
+    price: '',
+    isInStock: true
   })
 
   const onChangeNewPlant = event => {
@@ -27,7 +28,10 @@ function NewPlantForm({ plants, setPlants}) {
       body: JSON.stringify(newPlant)
     })
     .then(resp => resp.json())
-    .then(data => setPlants([...plants, data]))
+    .then(data => { 
+      setPlants([...plants, data]);
+    })
+    
   }
 
   return (
